@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, TextInput} from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -16,12 +16,28 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component{
+
+  state = {
+    placeName: ''
+  }
+
+  placeNameChangeHandler = (val) => {
+    this.setState({
+      ...this.state,
+      placeName: val
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Something Changed</Text>
+        <TextInput 
+          style = {{width:300}}
+          value={this.state.placeName} 
+          onChangeText = {this.placeNameChangeHandler}
+          placeholder = {'Text Input'}>   
+        </TextInput>
       </View>
     );
   }
@@ -30,9 +46,10 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    padding: 75
   },
   welcome: {
     fontSize: 20,
