@@ -19,7 +19,8 @@ const instructions = Platform.select({
 export default class App extends Component{
 
   state = {
-    placeName: ''
+    placeName: '',
+    places: []
   }
 
   placeNameChangeHandler = (val) => {
@@ -29,7 +30,21 @@ export default class App extends Component{
     })
   }
 
+  placeSubmitHandler = () =>{
+    if(this.state.placeName.trim() === ''){
+      return;
+    }
+
+    this.setState({
+      places: this.state.places.concat(this.state.placeName)
+    })
+  }
+
   render() {
+    const placesOutput = this.state.places.map(place => {
+      return <Text key = {{place}}>{place}</Text>
+    })
+
     return (
       <View style={styles.container}>
         <View style = {styles.inputContainer}>
@@ -41,7 +56,11 @@ export default class App extends Component{
           </TextInput>
           <Button 
             style={styles.placeButton}
-            title='Add' />
+            title='Add' 
+            onPress = {this.placeSubmitHandler}/>
+        </View>
+        <View>
+          {placesOutput}
         </View>
       </View>
     );
