@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Button} from 'react-native';
+import ListItem from './src/components/ListItem/ListItem'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -42,7 +43,7 @@ export default class App extends Component{
 
   render() {
     const placesOutput = this.state.places.map(place => {
-      return <Text key = {{place}}>{place}</Text>
+      return <ListItem key = {place} placeName = {place}/>
     })
 
     return (
@@ -59,7 +60,7 @@ export default class App extends Component{
             title='Add' 
             onPress = {this.placeSubmitHandler}/>
         </View>
-        <View>
+        <View style = {styles.listContainer}>
           {placesOutput}
         </View>
       </View>
@@ -96,5 +97,8 @@ const styles = StyleSheet.create({
   },
   placeButton:{
     width: '30%'
+  },
+  listContainer:{
+    width: "100%"
   }
 });
