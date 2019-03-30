@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 
 class ListItem extends React.Component {
     constructor(props) {
@@ -9,9 +9,11 @@ class ListItem extends React.Component {
 
     render() {
         return (
-            <View style = {styles.listItem}>
-                <Text>{this.props.placeName}</Text>
-            </View>
+            <TouchableOpacity onPress={this.props.onItemPressed}>
+                <View style = {styles.listItem}>
+                    <Text>{this.props.placeName}</Text>
+                </View>
+            </TouchableOpacity>
         );
     }
 }
