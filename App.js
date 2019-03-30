@@ -8,7 +8,8 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Button} from 'react-native';
-import ListItem from './src/components/ListItem/ListItem'
+import ListItem from './src/components/ListItem/ListItem';
+import InputContainer from './src/components/InputField/InputContainer';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -48,18 +49,7 @@ export default class App extends Component{
 
     return (
       <View style={styles.container}>
-        <View style = {styles.inputContainer}>
-          <TextInput
-            style={styles.placeInput}
-            value={this.state.placeName}
-            onChangeText={this.placeNameChangeHandler}
-            placeholder={'Text Input'}>
-          </TextInput>
-          <Button 
-            style={styles.placeButton}
-            title='Add' 
-            onPress = {this.placeSubmitHandler}/>
-        </View>
+        <InputContainer placeChange = {this.placeNameChangeHandler} placeSubmit = {this.placeSubmitHandler}/>
         <View style = {styles.listContainer}>
           {placesOutput}
         </View>
@@ -85,18 +75,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
-  },
-  inputContainer:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%'
-  },
-  placeInput:{
-    width: '70%'
-  },
-  placeButton:{
-    width: '30%'
   },
   listContainer:{
     width: "100%"
