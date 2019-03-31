@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Button} from 'react-native';
-import ListItem from './src/components/ListItem/ListItem';
+import ListContainer from './src/components/ListContainer/ListContainer'
 import InputContainer from './src/components/InputField/InputContainer';
 
 const instructions = Platform.select({
@@ -43,20 +43,11 @@ export default class App extends Component{
   }
 
   render() {
-    const placesOutput = this.state.places.map((place, i) => {
-      return <ListItem 
-              key = {i} 
-              placeName = {place} 
-              onItemPressed={()=>alert('item pressed: ' + place)}
-              />
-    })
 
     return (
       <View style={styles.container}>
         <InputContainer placeChange = {this.placeNameChangeHandler} placeSubmit = {this.placeSubmitHandler}/>
-        <View style = {styles.listContainer}>
-          {placesOutput}
-        </View>
+        <ListContainer places = {this.state.places} />
       </View>
     );
   }
@@ -79,8 +70,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
-  },
-  listContainer:{
-    width: "100%"
   }
 });
