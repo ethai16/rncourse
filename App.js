@@ -50,7 +50,7 @@ export default class App extends Component{
           return i !== index;
         })
       }
-    })
+    });
   }
 
 
@@ -72,7 +72,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-    padding: 75
+    paddingTop: 75,
+    paddingRight: 30,
+    paddingLeft:30
   },
   welcome: {
     fontSize: 20,
