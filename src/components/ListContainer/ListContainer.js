@@ -13,7 +13,7 @@ class ListContainer extends React.Component {
             return <ListItem 
                     key = {i} 
                     placeName = {place} 
-                    onItemPressed={()=>alert('item pressed: ' + place)}
+                    onItemPressed={()=>{this.props.onItemDeleted(i)}}
                     />
         })
 

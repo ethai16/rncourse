@@ -42,12 +42,25 @@ export default class App extends Component{
     })
   }
 
+  onItemDeleted = (index) => {
+
+    this.setState(prevState =>{
+      return {
+        places: prevState.places.filter((place,i) => {
+          return i !== index;
+        })
+      }
+    })
+  }
+
+
+
   render() {
 
     return (
       <View style={styles.container}>
         <InputContainer placeChange = {this.placeNameChangeHandler} placeSubmit = {this.placeSubmitHandler}/>
-        <ListContainer places = {this.state.places} />
+        <ListContainer places = {this.state.places}  onItemDeleted = {this.onItemDeleted}/>
       </View>
     );
   }
